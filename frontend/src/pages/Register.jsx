@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Stethoscope } from "lucide-react";
 import { register } from "@/api";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Register = () => {
@@ -37,13 +37,43 @@ const Register = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-2xl">Create account</CardTitle>
-          <CardDescription>Only name, email and password are required.</CardDescription>
-        </CardHeader>
-        <CardContent>
+    <div className="grid min-h-screen lg:grid-cols-2">
+      <div className="relative hidden flex-col justify-between bg-sidebar p-10 text-sidebar-foreground lg:flex">
+        <div className="flex items-center gap-2">
+          <div className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
+            <Stethoscope className="size-4" />
+          </div>
+          <span className="font-heading text-base font-semibold tracking-tight">Ledger</span>
+        </div>
+
+        <div className="max-w-sm space-y-3">
+          <h1 className="font-heading text-3xl leading-tight font-semibold tracking-tight">
+            Your slot, held in your name.
+          </h1>
+          <p className="text-sm text-sidebar-foreground/70">
+            Just a name, email and password to start. Everything else is optional.
+          </p>
+        </div>
+
+        <p className="text-xs text-sidebar-foreground/50">Appointment Ledger</p>
+      </div>
+
+      <div className="flex items-center justify-center p-6">
+        <div className="w-full max-w-sm space-y-6 py-8">
+          <div className="space-y-1.5 lg:hidden">
+            <div className="flex items-center gap-2">
+              <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                <Stethoscope className="size-4" />
+              </div>
+              <span className="font-heading text-base font-semibold tracking-tight">Ledger</span>
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <h2 className="font-heading text-2xl font-semibold tracking-tight">Create account</h2>
+            <p className="text-sm text-muted-foreground">Only name, email and password are required.</p>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="name">Name *</Label>
@@ -92,8 +122,8 @@ const Register = () => {
               Already have an account? <Link to="/login" className="font-medium text-foreground underline underline-offset-4">Login</Link>
             </p>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };

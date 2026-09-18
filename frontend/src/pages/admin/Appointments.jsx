@@ -48,7 +48,12 @@ const Appointments = () => {
                     <TableCell>{a.date}</TableCell>
                     <TableCell>{a.startTime} - {a.endTime}</TableCell>
                     <TableCell>
-                      <Badge variant={a.status === "booked" ? "default" : "secondary"}>{a.status}</Badge>
+                      <Badge
+                        className={a.status === "booked" ? "border-transparent bg-accent text-accent-foreground" : ""}
+                        variant={a.status === "booked" ? "default" : "destructive"}
+                      >
+                        {a.status}
+                      </Badge>
                     </TableCell>
                   </TableRow>
                 ))}

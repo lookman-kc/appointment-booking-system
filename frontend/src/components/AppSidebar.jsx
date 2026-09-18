@@ -65,12 +65,12 @@ const AppSidebar = () => {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-2 py-1.5">
-          <div className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
+        <div className="flex items-center gap-2 px-2 py-2">
+          <div className="flex size-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
             <Stethoscope className="size-4" />
           </div>
-          <span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
-            Appointments
+          <span className="truncate font-heading text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
+            Ledger
           </span>
         </div>
       </SidebarHeader>
@@ -81,16 +81,28 @@ const AppSidebar = () => {
             <SidebarGroupLabel>{section.label}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {section.items.map((item) => (
-                  <SidebarMenuItem key={item.to}>
-                    <SidebarMenuButton asChild isActive={location.pathname === item.to} tooltip={item.label}>
-                      <Link to={item.to}>
-                        <item.icon />
-                        <span>{item.label}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                {section.items.map((item) => {
+                  const isActive = location.pathname === item.to;
+                  return (
+                    <SidebarMenuItem key={item.to}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive}
+                        tooltip={item.label}
+                        className={
+                          isActive
+                            ? "border-l-2 border-sidebar-primary bg-sidebar-accent pl-1.5 font-medium text-sidebar-primary hover:bg-sidebar-accent hover:text-sidebar-primary"
+                            : "border-l-2 border-transparent pl-1.5"
+                        }
+                      >
+                        <Link to={item.to}>
+                          <item.icon />
+                          <span>{item.label}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

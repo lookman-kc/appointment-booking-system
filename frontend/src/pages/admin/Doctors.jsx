@@ -153,7 +153,9 @@ const Doctors = () => {
                     <TableCell>{d.email}</TableCell>
                     <TableCell>{d.phone || "-"}</TableCell>
                     <TableCell>
-                      <Badge variant={d.isActive ? "default" : "secondary"}>{d.isActive ? "Active" : "Inactive"}</Badge>
+                      <Badge className={d.isActive ? "border-transparent bg-accent text-accent-foreground" : ""} variant={d.isActive ? "default" : "secondary"}>
+                        {d.isActive ? "Active" : "Inactive"}
+                      </Badge>
                     </TableCell>
                     <TableCell className="text-right">
                       <Button variant="ghost" size="sm" onClick={() => toggleActive(d)}>
